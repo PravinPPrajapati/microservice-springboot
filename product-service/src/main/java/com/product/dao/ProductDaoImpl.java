@@ -1,28 +1,29 @@
 package com.product.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.domain.objects.Product;
 import com.product.repository.ProductRepository;
 
-@Repository
 @Transactional
+@Component
 public class ProductDaoImpl {
 	
 	@Autowired
 	ProductRepository productRepo;
-	
-	List<Product> allProducts = new ArrayList<Product>(); 
 
+	public List<Product> getAllProducts()
+	{
+		return productRepo.findAll();
+	}
+	
 	public Product getProductById(long productId)
 	{
-		ProductDaoImpl.class.getAnnotatedInterfaces();
-		Product product = productRepo.getOne(productId);
+		Product product = productRepo.findOne(productId);
 		return product;
 	}
 	
@@ -31,21 +32,23 @@ public class ProductDaoImpl {
 		productRepo.delete(getProductById(productId));
 	}
 	
-	public void insertProduct(Product product)
+	public Product insertProduct(Product product)
 	{
-		productRepo.save(product);
+		return productRepo.save(product);
 	}
 	
 	public Product updateProduct(Product product)
 	{
-		productRepo.flush();
-		return product;
-	}
-	
-	public List<Product> getAllProducts()
-	{
-		allProducts = productRepo.findAll();
-		return allProducts;
+		Product dbProduct = productRepo.findOne(product.getProductId());
+        if(product.getProductName() != null)
+            dbProduct.setProductName(product.getProductName());
+        if(product.getProductDesc() != null)
+            dbProduct.setProductDesc(product.getProductDesc());
+        
+        productRepo.save(dbProduct);
+        //productRepo.flush();
+        return dbProduct;
+        
 	}
 	
 }

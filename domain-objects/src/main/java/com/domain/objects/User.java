@@ -13,7 +13,7 @@ public class User {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="USER_ID")
-	private Integer userId;
+	private Long userId;
 	
 	@Column(name="USER_NAME", nullable=false)
 	private String userName;
@@ -35,7 +35,7 @@ public class User {
 		this.email = email;
 	}
 	
-	public User(Integer userId, String userName, String password, String email) {
+	public User(Long userId, String userName, String password, String email) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
@@ -61,11 +61,14 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Integer getUserId() {
+
+	public Long getUserId() {
 		return userId;
 	}
-	public void setUserId(Integer userId) {
+
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
+	
 	
 }

@@ -7,7 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "PRODUCT")
 public class Product {
@@ -23,8 +25,7 @@ public class Product {
 	@Column(name="PRODUCT_DESC")
 	private String productDesc;
 	
-	public Product()
-	{
+	public Product() {
 		
 	}
 	
