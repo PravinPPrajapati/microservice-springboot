@@ -1,0 +1,15 @@
+server:
+  port: 8888
+
+zuul:
+  routes:
+    product:
+      path: /product/**
+      url: http://localhost:8086/product
+    order:
+      path: /order/**
+      url: http://localhost:8087/order
+    user:
+      path: /user/**
+      url: http://localhost:8085/user
+    
