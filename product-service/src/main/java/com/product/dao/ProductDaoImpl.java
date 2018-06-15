@@ -23,7 +23,7 @@ public class ProductDaoImpl {
 	
 	public Product getProductById(long productId)
 	{
-		Product product = productRepo.findOne(productId);
+		Product product = productRepo.findById(productId).orElse(null);
 		return product;
 	}
 	
@@ -39,7 +39,7 @@ public class ProductDaoImpl {
 	
 	public Product updateProduct(Product product)
 	{
-		Product dbProduct = productRepo.findOne(product.getProductId());
+		Product dbProduct = productRepo.findById(product.getProductId()).orElse(null);
         if(product.getProductName() != null)
             dbProduct.setProductName(product.getProductName());
         if(product.getProductDesc() != null)
