@@ -56,7 +56,7 @@ public class OrderImpl {
 	public @ResponseBody Order updateOrder(@RequestBody Order order,
 										   @PathVariable("orderId") long orderId) {
 		order.setOrderId(orderId);
-		return orderDao.insertOrder(order);
+		return orderDao.updateOrder(order);
 	}
 	
 	// http://localhost:9090/order/submitOrder?userId=5&productId=4
@@ -81,7 +81,5 @@ public class OrderImpl {
 	    
 		return insertOrder(order);
 	}
-	
-	
 	
 }
