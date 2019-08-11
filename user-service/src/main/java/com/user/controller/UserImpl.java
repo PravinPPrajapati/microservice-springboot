@@ -19,7 +19,7 @@ import com.domain.objects.User;
 import com.user.dao.UserDaoImpl;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserImpl {
 	@Autowired
 	UserDaoImpl userDao = null;
